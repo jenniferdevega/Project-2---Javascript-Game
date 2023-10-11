@@ -22,4 +22,7 @@ Gameplay:
 2. When the 2 cards match, the player will earn 1 point.
 3. When the 2 cards do not match, the card will flip back to the back card.
 4. Player has only 1 minute to match all 6 cards to win.
-5. The player has the option to restart the game or end the game completely. - This will be added in version 2
+
+For Version 2:
+1. The player has the option to restart the game without loggning in again or end the game completely.
+2. Input of minute(s) from user. 
