@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>B&B Matching Game</title>
+
+    <!-- Start of References -->
+    <link rel="icon" type="image/x-icon" href="images/logo.png" />
+
+    <!-- Bootstrap V5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Sweet Alert 2 -->
+    <link rel="stylesheet" href="sweetalert2.min.css" />
+  </head>
+  <body>
+    <header id="headerRules">
+      <div class="container-fluid">
+        <img src="images/Welcome.png" alt="Welcome to Barbie World" />
+        <h1 class="fw-bold text-center">
+          <span id="inputPlayerName"></span>
+          <!-- <img src="images/flyingbarbie.gif" alt="" /> -->
+        </h1>
+      </div>
+    </header>
+
+    <!-- Start of Welcome Modal -->
+    <div
+      class="modal"
+      data-aos="fade-up"
+      data-aos-duration="1500"
+      id="welcomeModal"
+      data-bs-backdrop="static"
+    >
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="modal-title">
+              <img
+                class="barbieIcon"
+                src="images/frontcard.png"
+                alt="Barbie Logo"
+              />
+              <img src="images/Matching-Game-10-4-2023.png" alt="Let us Play" />
+            </div>
+          </div>
+
+          <div class="modal-body px-5 py-3 text-center">
+            <p class="welcomeFont fw-bold p-0">
+              Come and play with me. <br />
+              Let's be friends, what is your name?
+            </p>
+            <input
+              type="text"
+              name="name"
+              id="playerName"
+              class="form-control text-center username"
+              placeholder="Type your name here..."
+              maxlength="30"
+              required
+            />
+            <button
+              id="btnSubmit"
+              class="btn btn-info mt-4 mb-3 text-white fw-bolder"
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Welcome Modal -->
+
+    <!-- Start of main -->
+    <main class="container">
+      <!-- audio  -->
+      <audio id="barbie" src="audio/BarbieGirlSong.wav" loop></audio>
+      <audio id="incorrect" src="audio/incorrect.wav"></audio>
+      <audio id="welcome" src="audio/welcome.wav"></audio>
+      <audio id="winner" src="audio/Winner.wav"></audio>
+
+      <!-- Start of Game status and Timer-->
+      <div class="card shadow">
+        <!-- Start of card body -->
+        <div class="card-body">
+          <div class="row">
+            <div class="col-4 pt-2 pb-2 text-center">
+              <strong class="fontColor fs-5">Move: </strong>
+              <span class="badge bg-info fs-5" id="userMoves">0</span>
+            </div>
+
+            <div class="col-4 pt-2 pb-2 text-center">
+              <strong class="fontColor fs-5">Score: </strong>
+              <span class="badge bg-info fs-5" id="userScore">0</span>
+            </div>
+
+            <div class="col-4 pt-2 pb-2 text-center">
+              <strong class="fontColor fs-5">Timer: </strong>
+              <div id="timer" class="badge bg-primary fs-5" value="00:00">
+                00:00
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End of card body -->
+      </div>
+      <!-- End of Game status and Timer-->
+
+      <!-- Start of Game Rules -->
+      <div id="divGameRules" class="gameRules container pt-4">
+        <div class="card shadow">
+          <h5 class="card-header fs-5 text-primary fw-bold text-center">
+            Game Rules
+          </h5>
+          <div class="card-body">
+            <form class="align-content-center">
+              <div class="container">
+                <ul class="ulGameRules pt-3 pb-3">
+                  <li>Flip two cards to see the pictures if matched.</li>
+                  <li>
+                    Match 6 card pairs in
+                    <strong class="fontColor">1 minute</strong> to
+                    <strong class="fontColor">win</strong>
+                  </li>
+                </ul>
+                <br />
+                <h3 class="welcomeFont text-center">
+                  <strong>Good Luck! 🩰</strong>
+                </h3>
+                <div class="container justify-content-center d-flex">
+                  <a href="#containerGame">
+                    <button
+                      id="btnLetsPlay"
+                      type="button"
+                      class="btn btn-info mt-3 mb-3 ps-5 pe-5 text-white fw-bolder"
+                    >
+                      Let's Play!
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- End of Game Rules -->
+
+      <!-- Start of Game -->
+      <div id="sectionGame" class="matching-game container-fluid">
+        <div class="matching-card" data-framework="barbie">
+          <img class="front-face" src="images/barbie.jpg" alt="Barbie" />
+          <img class="back-face" src="images/logo.png" alt="Barbie Logo" />
+        </div>
+        <div class="matching-card" data-framework="barbie">
+          <img class="front-face" src="images/barbie.jpg" alt="Barbie" />
+          <img class="back-face" src="images/logo.png" alt="Barbie Logo" />
+        </div>
+
+        <div class="matching-card" data-framework="diamond">
+          <img class="front-face" src="images/diamond.png" alt="Diamond" />
+          <img class="back-face" src="images/logo.png" alt="Barbie Logo" />
+        </div>
+        <div class="matching-card" data-framework="diamond">
+          <img class="front-face" src="images/diamond.png" alt="Diamond" />
+          <img class="back-face" src="images/logo.png" alt="Barbie Logo" />
+        </div>
+
+        <div class="matching-card" data-framework="phone">
+          <img class="front-face" src="images/phone.png" alt="Phone" />
+          <img class="back-face" src="images/logo.png" alt="Barbie Logo" />
+        </div>
+        <div class="matching-card" data-framework="phone">
+          <img class="front-face" src="images/phone.png" alt="Phone" />
+          <img class="back-face" src="images/logo.png" alt="Barbie Logo" />
+        </div>
+
+        <div class="matching-card" data-framework="glasses">
+          <img class="front-face" src="images/glasses.png" alt="Glasses" />
+          <img class="back-face" src="images/logo.png" alt="Barbie Logo" />
+        </div>
+        <div class="matching-card" data-framework="glasses">
+          <img class="front-face" src="images/glasses.png" alt="Glasses" />
+          <img class="back-face" src="images/logo.png" alt="Barbie Logo" />
+        </div>
+
+        <div class="matching-card" data-framework="rose">
+          <img class="front-face" src="images/rose.png" alt="Rose" />
+          <img class="back-face" src="images/logo.png" alt="Barbie Logo" />
+        </div>
+        <div class="matching-card" data-framework="rose">
+          <img class="front-face" src="images/rose.png" alt="Rose" />
+          <img class="back-face" src="images/logo.png" alt="Barbie Logo" />
+        </div>
+
+        <div class="matching-card" data-framework="lipstick">
+          <img class="front-face" src="images/lipstick.png" alt="Lipstick" />
+          <img class="back-face" src="images/logo.png" alt="Barbie Logo" />
+        </div>
+        <div class="matching-card" data-framework="lipstick">
+          <img class="front-face" src="images/lipstick.png" alt="Lipstick" />
+          <img class="back-face" src="images/logo.png" alt="Barbie Logo" />
+        </div>
+      </div>
+      <!-- End of Game -->
+    </main>
+    <!-- End of main -->
+
+    <!-- Start of Footer -->
+    <footer
+      class="container-fluid p-0 mt-4 text-center f-5 fw-bold bg-primary-subtle fw-bolder text-light"
+    >
+      <img
+        class="barbieIcon align-items-xl-start"
+        src="images/HeaderImage.png"
+        alt="Barbie Logo"
+      />
+      Copyright 2023 © De Vega, Jennifer. All rights Reserved.
+    </footer>
+    <!-- End of Footer -->
+
+    <!-- Start of JS References -->
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- External CSS -->
+    <script src="script.js"></script>
+
+    <!-- Sweet Alert v2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+
+    <!-- End of JS References -->
+  </body>
+</html>
