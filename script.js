@@ -192,7 +192,7 @@ btnSubmit.addEventListener("click", () => {
 
 //--===================== Start of Timer Header =====================--
 let interval,
-    minutes = 1,
+    minutes = 3,
     timer = 60 * minutes,
     displayTimer = document.querySelector("#timer");
 
